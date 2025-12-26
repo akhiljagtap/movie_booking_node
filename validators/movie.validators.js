@@ -16,3 +16,4 @@ export const movieValidationSchema = Joi.object({
   status: Joi.string().valid('comming_soon','released','stopped').required()
 
 })
+

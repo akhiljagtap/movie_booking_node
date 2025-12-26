@@ -1,8 +1,9 @@
 import express from "express"
-import { createMovie } from "../controllers/movie.controller.js"
-
+import { createMovies } from "../controllers/movie.controller.js"
+import { fetchAllMovies } from "../controllers/movie.controller.js"
 const movieRouter = express.Router()
-movieRouter.post('/create', createMovie)
+movieRouter.post('/create', createMovies)
+movieRouter.get('/fetch', fetchAllMovies)
 
 export default movieRouter
 

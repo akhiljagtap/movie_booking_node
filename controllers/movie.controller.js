@@ -3,7 +3,7 @@ import { movieValidationSchema } from "../validators/movie.validators.js";
 
 
 //CREATE MOVIE
-export const createMovie = async (req, res) => {
+export const createMovies = async (req, res) => {
     const { error, value } = movieValidationSchema.validate(req.body)
     if (error) {
         return res.status(400).json({
@@ -25,4 +25,28 @@ export const createMovie = async (req, res) => {
     
 }
 
-//FETCH MOVIE
+//FETCH ALL MOVIE
+export const fetchAllMovies = async (req, res) => {
+
+    try {
+        const movies = await movieModel.find()
+        return res.status(200).json({
+            message: "all movies fetched successfully.",
+            count: movies.length,
+        })
+
+
+        
+    } catch (error) {
+        return res.status(400).json({
+            message: "failed to fetch all movies.",
+            error: error
+        
+        }
+        )
+    }
+}
+
+
+
+
