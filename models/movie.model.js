@@ -17,7 +17,7 @@ const movieSchema = new mongoose.Schema({
         type: [String],
         required:true,
     },
-    formate: {
+    format: {
         type: [String],
         required:true,
     },
