@@ -2,12 +2,22 @@
 import express from "express"
 import env from "dotenv"
 import mongoose from "mongoose"
+import movieRoute from "./routes/movie.route.js"
+
+
 const app = express()
 env.config()
+const PORT = process.env.PORT
 
+
+//MIDDLEWARE
 app.use(express.json())
 
-const PORT = process.env.PORT
+
+//ROUTER
+app.use('/api/movie/v1',movieRoute)
+
+
 
 
 app.get('/home', (req, res) => {
