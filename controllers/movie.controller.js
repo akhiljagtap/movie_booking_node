@@ -123,6 +123,74 @@ export const fetchMovieByStatus = async (req, res) => {
     }
 }
 
+//FETCH BY genre
+export const fetchMovieBygenre = async (req, res) => {
+    try {
+        const { genre } = req.params
+        const normalization = genre.toLowerCase()
+
+        const movies = await movieModel.find({ genre: normalization })
+        if (movies.length == 0) {
+            return res.status(404).json({
+                message:"Movie not found for this genere."
+            })
+        }
+        return res.status(201).json({
+            message: "Movie fetched successfully for thus genre.",
+            date:movies
+        })
+        
+        
+    } catch (error) {
+        return res.status(500).json({
+            message:"server error, MOvie not found for this genre."
+        })
+        
+    }
+    
+
+}
+
+//FETCH BY RATINGS
+export const fetchMovieByRatings = async (req, res) => {
+    try {
+        const { rating } = req.params
+
+        //req.params is always give the string, so explicit typecasting is needed for rating.
+        const numericRating = Number(rating)
+
+        if (Number.isNaN(numericRating)) {
+            return res.status(404).json({
+                message:"Rating must be a valid number."
+            })
+        }
+
+
+        if (rating > 5 | rating < 1){
+            return res.status(404).json({
+                message:"ratings should be between 1 and 5 "
+            })
+        }
+
+        const movie = await movieModel.find({ rating: numericRating })
+        if (movie.length === 0) {
+            return res.status(404).json({
+                message:"No movie found for this ratings"
+            })
+        }
+        return res.status(200).json({
+            message: "movie fetched successfully for this ratings.",
+            data:movie
+        })
+    
+    
+    } catch (error) {
+        return res.status(500).json({
+            message:"server error, Movie not found fot this ratngs."
+        })
+        
+    }
+}
 
 
 
