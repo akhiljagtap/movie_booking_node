@@ -80,14 +80,14 @@ export const fetchMovieByName = async (req, res) => {
         })
         
     }
-
-    
 }
 
 //FETCH BY STATUS
 export const fetchMovieByStatus = async (req, res) => {
     try {
-    const { status } = req.params
+        const { status } = req.params
+        console.log("status", status);
+        
         const allowedStatus = ["released", "comming_soon", "stopped"]
         
         if (!allowedStatus.includes(status.toLowerCase())) {
@@ -96,10 +96,14 @@ export const fetchMovieByStatus = async (req, res) => {
             })
         }
 
-        const movie = await movieModel.findOne({
+        const movie = await movieModel.find({
             status: status.toLowerCase()
-
         })
+        if (movie.length == 0) {
+            return res.status(400).json({
+                message:"No movie found for this status."
+            })
+        }
 
         if (!movie) {
             return res.status(404).json({
@@ -117,8 +121,6 @@ export const fetchMovieByStatus = async (req, res) => {
         })
         
     }
-
-    
 }
 
 
