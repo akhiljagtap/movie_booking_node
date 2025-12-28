@@ -1,8 +1,10 @@
 import bcrypt from "bcryptjs";
+import Jwt from "jsonwebtoken"
+import dotenv from "dotenv"
 import authModel from "../models/auth.model.js";
 import { authValidationSchema, loginValidationScheme } from "../validators/auth.validator.js";
 
-
+dotenv.config()
 
 //CREATE USER
 export const createUser = async (req, res) => {
@@ -54,6 +56,9 @@ export const createUser = async (req, res) => {
 //LOGIN USER
 export const loginUser = async (req, res) => {
     try {
+        // console.log("headers ", req.headers);
+
+        console.log("body ", req.body);
         const { error, value } = loginValidationScheme.validate(req.body)
     if (error) {
          return res.status(400).json({
@@ -79,12 +84,28 @@ export const loginUser = async (req, res) => {
             
         })
     }
+        
+        const token = Jwt.sign({
+            userId: user._id,
+            userRole: user.role
+        },
+            process.env.JWT_SECRATE_KEY,
+            {expiresIn:process.env.JWT_EXPIRES_IN}
+        )
+
+        res.cookie("access_token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'strict',
+            maxAge: 24 * 60 * 60 * 1000
+            
+        })
 
     return res.status(200).json({
         message: " login successfull ",
         username: user.username,
         email: user.email,
-        role : user.role
+        role: user.role,
     })
     
     } catch (error) {

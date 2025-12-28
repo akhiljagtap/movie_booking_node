@@ -7,10 +7,12 @@ import {
     fetchMovieBygenre,
     fetchMovieByRatings
 } from "../controllers/movie.controller.js"
+import { verifyToken } from "../middlewares/auth.middleware.js"
+import { isAdmin } from "../middlewares/admin.middleware.js"
 
 
 const movieRouter = express.Router()
-movieRouter.post('/createmovie',  createMovies)
+movieRouter.post('/createmovie', verifyToken, isAdmin, createMovies)
 movieRouter.get('/fetchmovie', fetchAllMovies)
 movieRouter.get('/fetch/name/:name', fetchMovieByName)
 movieRouter.get('/fetch/status/:status', fetchMovieByStatus)

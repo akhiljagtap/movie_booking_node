@@ -7,6 +7,8 @@ import { movieValidationSchema } from "../validators/movie.validators.js";
 //CREATE MOVIE
 export const createMovies = async (req, res) => {
     const { error, value } = movieValidationSchema.validate(req.body)
+    console.log("headers ", req.headers);
+    
     if (error) {
         return res.status(400).json({
             message:error.details[0].message
