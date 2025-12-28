@@ -1,10 +1,13 @@
 import express from "express"
-import { createUser, loginUser } from "../controllers/auth.controller.js"
+import { createUser, getCurrentUser, loginUser, logoutUser } from "../controllers/auth.controller.js"
+import { verifyToken } from "../middlewares/auth.middleware.js"
 
-const authRouter = express.Router()
+const authRoute = express.Router()
 
-authRouter.post('/createuser', createUser)
-authRouter.post('/loginuser', loginUser)
+authRoute.post('/createuser', createUser)
+authRoute.post('/loginuser', loginUser)
+authRoute.post('/logoutuser', logoutUser)
+authRoute.get('/me',  verifyToken, getCurrentUser)
 
 
-export default authRouter
+export default authRoute

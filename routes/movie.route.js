@@ -18,5 +18,7 @@ movieRouter.get('/fetch/name/:name', fetchMovieByName)
 movieRouter.get('/fetch/status/:status', fetchMovieByStatus)
 movieRouter.get('/fetch/genre/:genre', fetchMovieBygenre)
 movieRouter.get('/fetch/rating/:rating', fetchMovieByRatings)
+
+
 export default movieRouter
 

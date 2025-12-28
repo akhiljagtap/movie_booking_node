@@ -3,7 +3,7 @@ import express from "express"
 import env from "dotenv"
 import mongoose from "mongoose"
 import movieRoute from "./routes/movie.route.js"
-import authRouter from "./routes/auth.route.js"
+import authRoute from "./routes/auth.route.js"
 import cookieParser from "cookie-parser"
 
 const app = express()
@@ -11,19 +11,19 @@ env.config()
 const PORT = process.env.PORT
 
 
-//MIDDLEWARES
+//MIDDLEWARES -
 
 //bodyparser
 app.use(express.json())  
 app.use(express.urlencoded({ extended: true }))
 
 //cookeiparser
-app.use(cookieParser())
+app.use(cookieParser());
 
 
-//ROUTER
+//ROUTERS
 app.use('/api/movie/v1', movieRoute)
-app.use('/api/movie/v1', authRouter) 
+app.use('/api/auth/v1', authRoute) 
 
 
 
