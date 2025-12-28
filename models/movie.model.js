@@ -35,7 +35,7 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "English",
-         lowercase:true,
+        lowercase:true,
     },
     duration: {
         type: Number,

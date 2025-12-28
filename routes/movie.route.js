@@ -10,8 +10,8 @@ import {
 
 
 const movieRouter = express.Router()
-movieRouter.post('/create', createMovies)
-movieRouter.get('/fetch', fetchAllMovies)
+movieRouter.post('/createmovie',  createMovies)
+movieRouter.get('/fetchmovie', fetchAllMovies)
 movieRouter.get('/fetch/name/:name', fetchMovieByName)
 movieRouter.get('/fetch/status/:status', fetchMovieByStatus)
 movieRouter.get('/fetch/genre/:genre', fetchMovieBygenre)

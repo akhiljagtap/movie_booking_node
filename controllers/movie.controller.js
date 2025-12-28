@@ -48,7 +48,6 @@ export const fetchAllMovies = async (req, res) => {
 }
 
 // FETCH MOVIE BY NAME
-
 export const fetchMovieByName = async (req, res) => {
     try {
     const { error, value } = movieFetchValidatorSchema.validate(req.params)
@@ -123,7 +122,7 @@ export const fetchMovieByStatus = async (req, res) => {
     }
 }
 
-//FETCH BY genre
+//FETCH BY GENRE
 export const fetchMovieBygenre = async (req, res) => {
     try {
         const { genre } = req.params
@@ -191,6 +190,8 @@ export const fetchMovieByRatings = async (req, res) => {
         
     }
 }
+
+//FETCH BY LANGUAGE
 
 
 

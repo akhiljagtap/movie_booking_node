@@ -3,7 +3,7 @@ import express from "express"
 import env from "dotenv"
 import mongoose from "mongoose"
 import movieRoute from "./routes/movie.route.js"
-
+import authRouter from "./routes/auth.route.js"
 
 const app = express()
 env.config()
@@ -15,8 +15,8 @@ app.use(express.json())
 
 
 //ROUTER
-app.use('/api/movie/v1',movieRoute)
-
+app.use('/api/movie/v1', movieRoute)
+app.use('/api/movie/v1', authRouter) 
 
 
 
