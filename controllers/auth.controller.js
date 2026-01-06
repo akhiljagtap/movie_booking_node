@@ -135,9 +135,8 @@ export const logoutUser = (req,res) => {
 //GET CURRENT USER
 export const getCurrentUser = (req, res) => {
     return res.status(200).json({
-        user:req.user
-    })
-    
+        user: req.user,
+    })   
 }
 
 
